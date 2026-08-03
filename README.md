@@ -3,10 +3,9 @@ Surface EMG dataset of thigh muscles recorded during an incremental cycling exer
 
 This repository includes custom MATLAB (.m) scripts to preprocess the EMG signals and run the analysis steps described in the associated paper. For details on data collection, contents, and file structure, see the dataset repository and the corresponding paper.
 
-The following function takes you to the preprocessing steps and therefore the data available in the dataset. The idea is that you can start with either the raw signal or the EMG envelopes that are already segmented.
+The following main script guides users through extracting each of the available datasets (raw → envelope → normalized), allowing you to start from the raw signal or the segmented EMG envelopes.
 
-> **_Preprocess steps:_** Take you.
-
+> **_Preprocess steps:_** Guide the user through the different EMG processing steps filtering → rectification → envelope extraction → normalization → segmentation → Validation.
 
 
 The following functions are used to preprocess an EMG signal:
