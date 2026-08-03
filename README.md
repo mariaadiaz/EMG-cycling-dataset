@@ -11,11 +11,11 @@ The following function takes you to the preprocessing steps and therefore the da
 
 The following functions are used to preprocess an EMG signal:
 
-> **_Preprocess envelope:_** Delete spikes from EMG signals.
+> **_Preprocess envelope:_** This function calculates the envelope of an EMG signal. It offers different approaches based on literature, but the "usual" is the preferred. 
 > 
-> **_remove_emg_artifacts:_** Identify the EMG envelope. Two different approaches are available, more details are directly in the function.
+> **_remove_emg_artifacts:_** Remove EMG artifacts (high spikes). Detect (and optionally attenuate) impulsive transient artifacts in an already band-pass-filtered sEMG signal.
 >
-> **_Notch filter:_**  In this folder you will find a number of functions necessary to extract <ins>muscle synergies</ins> and a GUI that can be used not only to extract muscle synergies but also as a tool to compare to a reference set of muscle synergies.
+> **_Notch filter:_**  Remove powerline interference from EMG signal
 >
 > Specific INPUTS and OUTPUTS for each function are defined in each function.
 
