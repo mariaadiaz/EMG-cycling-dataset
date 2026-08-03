@@ -14,7 +14,6 @@
 % Reference:
 %   SENIAM guidelines; De Luca et al. 2010
 %
-%
 % Maria Alejandra Diaz
 % VUB, 2026
 % ma.diaz@vub.edu
