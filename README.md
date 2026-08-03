@@ -15,7 +15,7 @@ The following functions are used to preprocess an EMG signal:
 > 
 > **_remove_emg_artifacts:_** Remove EMG artifacts (high spikes). Detect (and optionally attenuate) impulsive transient artifacts in an already band-pass-filtered sEMG signal.
 >
-> **_Notch filter:_**  Remove powerline interference from EMG signal
+> **_notch_emg:_**  Remove powerline interference from EMG signal
 >
 > Specific INPUTS and OUTPUTS for each function are defined in each function.
 
