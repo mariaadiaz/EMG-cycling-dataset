@@ -1,5 +1,5 @@
 clear all, clc
-%% ---- Define some values.
+%% ---- Define some values
 valor_mvc = 1; % 1 = Normalice by max, 2 = Normalize by MVC
 fs_delsys = 1926; % Sample frequency EMG
 fs_acc = 74; % Sample frequency IMU
