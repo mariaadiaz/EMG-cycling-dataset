@@ -3,14 +3,17 @@ clear all, clc
 valor_mvc = 1; % 1 = Normalice by max, 2 = Normalize by MVC
 fs_delsys = 1926; % Sample frequency EMG
 fs_acc = 74; % Sample frequency IMU
+
 %% Select the filepath
 filepath = '../Data_cycling/P06'; % This is an example path
 fprintf('Subject: %s | Session: %s\n', filepath(end-2:end), 'Cycling');
+
 %% ---- Load the EMG signals
-%---- This signals have been filtered using a 4th order butterworth filter band-pass 20-250Hz.
+%---- These signals have been filtered using a 4th order butterworth filter band-pass 20-250Hz.
 load(fullfile(filepath, 'emg_struct.mat'));
 raw_emg = data_struct.raw_emg;
 fields = fieldnames(raw_emg);
+
 %% --- Load the envelopes or calculated it using a low pass filter, cut off = 6Hz
 %----------------------------%
 %----- Load the envelope-----%
@@ -26,12 +29,12 @@ fnyq = round(fs_delsys)/2;
 [b,a] = butter(4,6/fnyq,'low'); % I had 2 order before
 
 %---- Calcualte the envelope for each muscle and add them to one structure
-
 for idx = 2:length(fields)
     signal = raw_emg.(fields{idx});
     rect_signal = abs(signal);
     envelopes.(fields{idx}) = filtfilt(b,a,rect_signal);
 end
+
 %% Normalize the envelopes  1 = in magnitude, 2 = MVC
 quadMuscles = {'RectusFemoris', 'VastusLateralis', 'VastusMedialis'};
 
@@ -50,6 +53,7 @@ if valor_mvc == 2
     end
     
 else
+
 %----------------------------------%
 %---- Normalize by the maximum ----%
 %----------------------------------%    
@@ -67,7 +71,6 @@ end
 %% Downsample the signals (if necessary for any processing)
 % If you want to downsample the signal, select factor = n. This will
 % downsample the signal by keeping every N-th sample.
-
 factor = 1;
 
 for idx = 2:length(fields)
@@ -75,6 +78,7 @@ for idx = 2:length(fields)
 end
 % ---- Time vector considering after downsampling
 normalized_envelopes.time = linspace(0,max(raw_emg.time),length(normalized_envelopes.RVastusLateralis));
+
 %% First quick visualization of the data 
 figure
 ax(1) = subplot(5,1,1);
@@ -94,8 +98,8 @@ ax(5) = subplot(5,1,5);
 plot(normalized_envelopes.time,normalized_envelopes.RSemitendinous), hold on, plot(normalized_envelopes.time,normalized_envelopes.LSemitendinous)
 title 'Semitendinous'
 linkaxes(ax,'x');
-%% Organize the cycling file per segment (or block)
 
+%% Organize the cycling file per segment (or block)
 %-----------------------------------------%
 %-- Extract the 1min segments in a loop --%
 %-----------------------------------------%
@@ -141,6 +145,7 @@ end
 %--- The advantage of loading the segments is that it contains IMU data, so
 %--- acceleration in the three-axes.
 % segments = data_struct.segments;
+
 %% Calculate power and mean activation for all muscles
 muscleNames = fields(2:end);
 %--- Organize the musccles so in the plot they are next to each other. In
